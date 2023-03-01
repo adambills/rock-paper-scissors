@@ -45,6 +45,7 @@ function playRound (playerSelection, computerSelection) {
 }
 
 function game() {
+    console.log("Rock, Paper, Scissors! Best 3 out of 5.")
     let playerScore = 0;
     let computerScore = 0;
     while (playerScore < 3 && computerScore < 3) {
