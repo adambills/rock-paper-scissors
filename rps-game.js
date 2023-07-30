@@ -1,38 +1,40 @@
+const div = document.querySelector('div');
+
+
 function getComputerChoice() {
     let randomNum = Math.floor(Math.random() * 3);
     switch (randomNum) {
         case 0:
-            return 'rock';
+            return 'Rock';
             break;
         case 1:
-            return 'paper';
+            return 'Paper';
             break;
         case 2:
-            return 'scissors';
+            return 'Scissors';
             break;
     }
 }
 
 function playRound(playerSelection) {
-
     let computerSelection = getComputerChoice();
     if (playerSelection === computerSelection) {
-        //Add results message to DOM and update score
-        //results message: `You both chose ${playerSelection}! It's a Tie.`;
+        //Update score
+        div.textContent = `You both chose ${playerSelection}! It's a Tie.`;
     } 
-    if ((playerSelection === 'rock' && computerSelection === 'scissors') ||
-    (playerSelection === 'paper' && computerSelection === 'rock') ||
-    (playerSelection === 'scissors' && computerSelection === 'paper')) {
-        //Add results message to DOM and update score
-        //results message: (`You chose ${playerSelection} and your opponent chose ${computerSelection}.
-        //${playerSelection} beats ${computerSelection}! You won this round.`);
+    if ((playerSelection === 'Rock' && computerSelection === 'Scissors') ||
+    (playerSelection === 'Paper' && computerSelection === 'Rock') ||
+    (playerSelection === 'Scissors' && computerSelection === 'Paper')) {
+        //Update score
+        div.textContent = (`You chose ${playerSelection} and your opponent chose ${computerSelection}.
+        ${playerSelection} beats ${computerSelection}! You won this round.`);
     } 
-    if ((playerSelection === 'rock' && computerSelection === 'paper') ||
-    (playerSelection === 'paper' && computerSelection === 'scissors') ||
-    (playerSelection === 'scissors' && computerSelection === 'rock')) {
-       //Add results message to DOM and update score
-        //results message: (`You chose ${playerSelection} and your opponent chose ${computerSelection}.
-       // ${playerSelection} is beaten by ${computerSelection}! You lost this round.`);
+    if ((playerSelection === 'Rock' && computerSelection === 'Paper') ||
+    (playerSelection === 'Paper' && computerSelection === 'Scissors') ||
+    (playerSelection === 'Scissors' && computerSelection === 'Rock')) {
+        //Update score
+        div.textContent =  (`You chose ${playerSelection} and your opponent chose ${computerSelection}.
+        ${playerSelection} is beaten by ${computerSelection}! You lost this round.`);
     }
 }
 /*
@@ -55,6 +57,6 @@ console.log(playerScore > computerScore ? "Score Limit Reached! You Won!" : "Sco
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
-    let playerSelection = button.innerText.toLowerCase();
-    button.addEventListener('click', playRound(playerSelection));
+    let playerSelection = button.innerText;
+    button.addEventListener('click', () => playRound(playerSelection));
 });
