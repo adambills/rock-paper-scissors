@@ -13,35 +13,26 @@ function getComputerChoice() {
     }
 }
 
-function playRound(playerSelection, computerSelection) {
-    let playerResult = false;
+function playRound(playerSelection) {
+
+    let computerSelection = getComputerChoice();
     if (playerSelection === computerSelection) {
-        playerResult = null;
-        return [`Both chose ${playerSelection}! It's a Tie.`, playerResult];
-    } else if (computerSelection === 'rock') {
-        switch (playerSelection) {
-            case 'paper':
-                playerResult = true;
-                return ['Paper covers Rock! You won this round.', playerResult];
-            case 'scissors':
-                return ['Scissors smashed by Rock! You lost this round.', playerResult];
-        }
-    } else if (computerSelection === 'paper') {
-        switch (playerSelection) {
-            case 'scissors':
-                playerResult = true;
-                return ['Scissors cuts Paper! You won this round.', playerResult];
-            case 'rock':
-                return ['Rock covered by Paper! You lost this round.', playerResult];
-        }
-    } else if (computerSelection === 'scissors') {
-        switch (playerSelection) {
-            case 'rock':
-                playerResult = true;
-                return ['Rock smashes Scissors! You won this round.', playerResult];
-            case 'paper':
-                return ['Paper cut by Scissors! You lost this round.', playerResult];
-        }
+        //Add results message to DOM and update score
+        //results message: `You both chose ${playerSelection}! It's a Tie.`;
+    } 
+    if ((playerSelection === 'rock' && computerSelection === 'scissors') ||
+    (playerSelection === 'paper' && computerSelection === 'rock') ||
+    (playerSelection === 'scissors' && computerSelection === 'paper')) {
+        //Add results message to DOM and update score
+        //results message: (`You chose ${playerSelection} and your opponent chose ${computerSelection}.
+        //${playerSelection} beats ${computerSelection}! You won this round.`);
+    } 
+    if ((playerSelection === 'rock' && computerSelection === 'paper') ||
+    (playerSelection === 'paper' && computerSelection === 'scissors') ||
+    (playerSelection === 'scissors' && computerSelection === 'rock')) {
+       //Add results message to DOM and update score
+        //results message: (`You chose ${playerSelection} and your opponent chose ${computerSelection}.
+       // ${playerSelection} is beaten by ${computerSelection}! You lost this round.`);
     }
 }
 /*
@@ -64,6 +55,6 @@ console.log(playerScore > computerScore ? "Score Limit Reached! You Won!" : "Sco
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
-    console.log(button.innerText);
-    button.addEventListener('click', playRound(button.innerText))
+    let playerSelection = button.innerText.toLowerCase();
+    button.addEventListener('click', playRound(playerSelection));
 });
