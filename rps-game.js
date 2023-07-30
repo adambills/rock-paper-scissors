@@ -44,7 +44,7 @@ function playRound(playerSelection, computerSelection) {
         }
     }
 }
-
+/*
 let playerScore = 0;
 let computerScore = 0;
 let roundCounter = 0;
@@ -60,3 +60,10 @@ console.log(`Your score: ${playerScore}`);
 console.log(`Opponent's Score: ${computerScore}`);
 console.groupEnd(`Round ${roundCounter}`);
 console.log(playerScore > computerScore ? "Score Limit Reached! You Won!" : "Score Limit Reached! You Lost!")
+*/
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    console.log(button.innerText);
+    button.addEventListener('click', playRound(button.innerText))
+});
